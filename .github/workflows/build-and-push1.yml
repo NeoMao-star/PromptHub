@@ -18,7 +18,7 @@ jobs:
         with:
           registry: crpi-f8e89bkxtt441m31.cn-qingdao.personal.cr.aliyuncs.com
           username: aliyun7010727154
-          password: well3721
+          password: well4771
 
       # 构建 Docker 镜像
       - name: Build Docker image
