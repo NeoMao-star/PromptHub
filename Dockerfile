@@ -2,13 +2,17 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# 安装静态服务
-RUN npm install -g serve
+# 安装pnpm
+RUN npm install -g pnpm
 
-# 复制项目
+# 复制整个项目
 COPY . .
 
-# 关键：直接运行 web 项目源码（能正常显示页面）
-CMD ["serve", "-s", "apps/web/src", "-l", "3000"]
+# 安装依赖并构建web端（官方命令）
+RUN pnpm install --no-frozen-lockfile
+RUN pnpm build:web
+
+# 启动完整服务
+CMD ["pnpm", "start:web"]
 
 EXPOSE 3000
