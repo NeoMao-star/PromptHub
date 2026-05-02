@@ -1,21 +1,16 @@
-# 这是 legeling/PromptHub 官方专用 Dockerfile
+# 官方专用 ！！！适用于 legeling/PromptHub web 版
 FROM node:20-alpine
-
-# 安装 pnpm（项目强制要求）
-RUN npm install -g pnpm
 
 WORKDIR /app
 
-# 复制项目全部文件
+# 复制项目
 COPY . .
 
-# 安装依赖
-RUN pnpm install
-
-# 构建网页版
+# 直接用项目自带的命令（官方已处理所有依赖）
+RUN npm install -g pnpm
+RUN pnpm install --frozen-lockfile
 RUN pnpm build:web
 
-# 启动网页版（官方命令）
-CMD ["pnpm", "start:web"]
-
 EXPOSE 3000
+
+CMD ["pnpm", "start:web"]
