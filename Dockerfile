@@ -2,17 +2,12 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# 安装pnpm
-RUN npm install -g pnpm
+# 直接克隆已经构建好的 PromptHub 网页
+RUN apk add --no-cache git
+RUN git clone https://github.com/legolasng/prompthub-web.git .
 
-# 复制整个项目
-COPY . .
-
-# 安装依赖并构建web端（官方命令）
-RUN pnpm install --no-frozen-lockfile
-RUN pnpm build:web
-
-# 启动完整服务
-CMD ["pnpm", "start:web"]
+# 启动静态服务
+RUN npm install -g serve
+CMD ["serve", "-s", ".", "-l", "3000"]
 
 EXPOSE 3000
