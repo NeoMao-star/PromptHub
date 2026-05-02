@@ -12,7 +12,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 登录阿里云镜像仓库（完全不变）
       - name: Login to Aliyun ACR
         uses: docker/login-action@v3
         with:
@@ -20,17 +19,15 @@ jobs:
           username: aliyun7010727154
           password: well4771
 
-      # 构建 Docker 镜像（只改这里！指定官方 Dockerfile）
+      # 关键：这里 只使用根目录 Dockerfile，不指定任何文件！
       - name: Build Docker image
         run: |
-          docker build -f apps/web/Dockerfile -t myapp .
+          docker build -t myapp .
 
-      # 打标签（完全不变）
       - name: Tag image
         run: |
           docker tag myapp crpi-f8e89bkxtt441m31.cn-qingdao.personal.cr.aliyuncs.com/neomao/prompthub:latest
 
-      # 推送到阿里云（完全不变）
       - name: Push to Aliyun ACR
         run: |
           docker push crpi-f8e89bkxtt441m31.cn-qingdao.personal.cr.aliyuncs.com/neomao/prompthub:latest
