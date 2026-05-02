@@ -17,7 +17,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: crpi-f8e89bkxtt441m31.cn-qingdao.personal.cr.aliyuncs.com
-          username: prompthub
+          username: aliyun7010727154
           password: well3721
 
       # 构建 Docker 镜像
