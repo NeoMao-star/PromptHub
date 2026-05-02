@@ -28,9 +28,9 @@ jobs:
       # 打标签（必须和你的仓库匹配）
       - name: Tag image
         run: |
-          docker tag myapp crpi-f8e89bkxtt441m31.cn-qingdao.personal.cr.aliyuncs.com/prompthub:latest
+          docker tag myapp crpi-f8e89bkxtt441m31.cn-qingdao.personal.cr.aliyuncs.com/neomao/prompthub:latest
 
       # 推送到阿里云
       - name: Push to Aliyun ACR
         run: |
-          docker push crpi-f8e89bkxtt441m31.cn-qingdao.personal.cr.aliyuncs.com/prompthub:latest
+          docker push crpi-f8e89bkxtt441m31.cn-qingdao.personal.cr.aliyuncs.com/neomao/prompthub:latest
